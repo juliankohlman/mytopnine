@@ -1,3 +1,7 @@
+const STATUS_USER_ERROR = 422;
+const STATUS_SERVER_ERROR = 500;
+const STATUS_GOOD= 200;
+
 module.exports = server => {
   // GETS
   server.get('/', (req, res) => {
