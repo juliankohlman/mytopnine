@@ -52,18 +52,17 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //
-mongoose.connect(keys.mongodb.dbURI, {useMongoClient: true}, (err) => {
-  if (err) return console.log(err);
-  console.log('Connected to MyTopNine DataBase from Server.js!');
-});
+
 
 // set up auth routes
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 
 // create home route
-app.get('/', (req, res) => {
-  res.render('home', { user: req.user});
+app.get('/', async (req, res) => {
+  const users = await User.find({}).exec();
+  console.log(users);
+  res.render('home', { user: req.user, users});
 });
 
 
@@ -100,7 +99,12 @@ app.get('/users', (req, res) => {
 //   });
 // });
 
-app.listen(PORT, (err) => {
-  if (err) return console.log('ERROR port 3001');
-  console.log(`MyTopNine now listening for requests on port ${PORT}`);
+
+mongoose.connect(keys.mongodb.dbURI, {useMongoClient: true}, (err) => {
+  if (err) return console.log(err);
+  app.listen(PORT, (err) => {
+    if (err) return console.log('ERROR port 3001');
+    console.log(`MyTopNine now listening for requests on port ${PORT}`);
+  });
+  console.log('Connected to MyTopNine DataBase from Server.js!');
 });
