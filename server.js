@@ -80,3 +80,17 @@ app.listen(PORT, (err) => {
   if (err) return console.log('ERROR port 3001');
   console.log(`MyTopNine now listening for requests on port ${PORT}`);
 });
+
+module.exports = {
+  google: {
+    clientID: '652304711010-jgov8fa1h48oc90us5mlbc8krdchhs4q.apps.googleusercontent.com',
+    clientSecret: 'guZrNHg-rLtingc-hbCBbPle'
+  },
+  mongodb: {
+    dbURI:'mongodb://localhost/topNineTest'
+    // dbURI: process.env.MONGODB_URI/heroku ? are we using keroku?
+  },
+  session: {
+    cookieKey:'mytopnine#!'
+  }
+};
