@@ -1,12 +1,23 @@
 const express = require('express');
+
+
+// Routes 
 const authRoutes = require('./server/routes/auth-routes');
 const profileRoutes = require('./server/routes/profile-routes');
+
+// passport setup, sets up strategies 
 const passportSetup = require('./server/config/passport-setup');
+//mongoose ORM for mongodb
 const mongoose = require('mongoose');
+//some config stuff: Todo :> extract out secrets.
 const keys = require('./server/config/keys');
+
+//cookie session ?: in memory database 
 const cookieSession = require('cookie-session');
+// passport
 const passport = require('passport');
 const bodyParser = require('body-parser');
+
 const User = require('./server/models/user.js');
 const cors = require('cors');
 
@@ -14,7 +25,7 @@ const app = express();
 const PORT = 3001;
 
 // Express only serves static assets in production
-app.use(express.static("./views"));
+app.use(express.static("./public"));
 
 
 app.use(bodyParser.json());
