@@ -6,18 +6,7 @@
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
-    <nav>
-      <ul>
-
-          <li><a href="/">HOMEPAGE</a></li>
-          <li><a href="/profile">PROFILE</a></li>
-          <% if (user) { %>
-          <li><a href="/auth/logout">LOGOUT</a></li>
-          <% } else { %>
-          <li><a href="/auth/login">LOGIN</a></li>
-          <% } %>
-      </ul>
-    </nav>
+    <%- include('components/nav') %>
     <header>
       <h1>TopNine</h1>
       <h2>Homepage</h2>
