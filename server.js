@@ -79,15 +79,15 @@ app.get('/users', (req, res) => {
   });
 });
 // route to get the friends array of an individual user
-app.get('/:id', (req, res) => {
-  console.log('Hi from the app.get /:id >> should return friends array');
-  const { id } = req.params;
-  User.findOne({_id: id}, (err, user) => {
-    if (err) return res.send(err);
-    console.log(user);
-    res.render('profile', {user});
-  });
-});
+// app.get('/:id', (req, res) => {
+//   console.log('Hi from the app.get /:id >> should return friends array');
+//   const { id } = req.params;
+//   User.findOne({_id: id}, (err, user) => {
+//     if (err) return res.send(err);
+//     console.log(user);
+//     res.render('profile', {user});
+//   });
+// });
 
 app.listen(PORT, (err) => {
   if (err) return console.log('ERROR port 3001');
