@@ -7,7 +7,7 @@ const keys = require('./server/config/keys');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const Card = require('./server/models/user.js');
+const User = require('./server/models/user.js');
 const cors = require('cors');
 
 const app = express();
@@ -56,22 +56,36 @@ app.get('/', (req, res) => {
 });
 
 
-// create calls to cards db
-app.post('/cards', (req, res) => {
-  const { _id, frontCard, backCard } = req.body;
-  const card = new Card({_id, frontCard, backCard});
-  card.save((err, newCard) => {
+// create calls to users db
+app.post('/users', (req, res) => {
+  const { _id, username } = req.body;
+  const user = new User({_id, username});
+  user.save((err, newUser) => {
     if (err) return res.send(err);
-    res.json(newCard)
+    res.json(newUser)
   });
 });
+// post / update friends list of an individual user
+app.post('/:id', (req, res) => {
+  
+});
 
-app.get('/cards', (req, res) => {
-  console.log('Hello from app.get /cards route!');
-  Card.find({}, (err, card) => {
-    console.log(card);
+app.get('/users', (req, res) => {
+  console.log('Hello from app.get /users route!');
+  User.find({}, (err, user) => {
+    console.log(user);
     if (err) return res.send(err);
-    res.json(card);
+    res.json(user);
+  });
+});
+// route to get the friends array of an individual user
+app.get('/:id', (req, res) => {
+  console.log('Hi from the app.get /:id >> should return friends array');
+  const { id } = req.params;
+  User.findOne({_id: id}, (err, user) => {
+    if (err) return res.send(err);
+    console.log(user);
+    res.render('profile', {user});
   });
 });
 
