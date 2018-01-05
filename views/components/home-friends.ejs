@@ -1,0 +1,29 @@
+const URL = 'https://TopNine.herokuapp.com/' <!-- this could be a different url idk if we're using heroku or whatever -->
+
+<div class = "container">
+  <h3><%= user.username %>'s Friends list'</h3>
+	<div>
+		<a href= <%= URL + user.friend[0][_id]%> ><img src="<%= user.friend[0].thumbnail %>" alt="user.friend[0].thumbnail"></a>
+		<a href= <%= URL + user.friend[1][_id]%> ><img src="<%= user.friend[1].thumbnail %>" alt="user.friend[1].thumbnail"></a>
+		<a href= <%= URL + user.friend[2][_id]%> ><img src="<%= user.friend[2].thumbnail %>" alt="user.friend[2].thumbnail"></a>
+	</div>
+	<div>
+		<span><%= user.friend[0].username %></span><%= user.friend[1].username %><span></span><%= user.friend[2].username %>
+	</div>
+	<div>
+		<a href= <%= URL + user.friend[3][_id]%> ><img src="<%= user.friend[3].thumbnail %>" alt="user.friend[3].thumbnail"></a>
+		<a href= <%= URL + user.friend[4][_id]%> ><img src="<%= user.friend[4].thumbnail %>" alt="user.friend[4].thumbnail"></a>
+		<a href= <%= URL + user.friend[5][_id]%> ><img src="<%= user.friend[5].thumbnail %>" alt="user.friend[5].thumbnail"></a>
+	</div>
+	<div>
+		<span><%= user.friend[3].username %></span><%= user.friend[4].username %><span></span><%= user.friend[5].username %>
+	</div>
+	<div>
+		<a href= <%= URL + user.friend[6][_id]%> ><img src="<%= user.friend[6].thumbnail %>" alt="user.friend[6].thumbnail"></a>
+		<a href= <%= URL + user.friend[7][_id]%> ><img src="<%= user.friend[7].thumbnail %>" alt="user.friend[7].thumbnail"></a>
+		<a href= <%= URL + user.friend[8][_id]%> ><img src="<%= user.friend[8].thumbnail %>" alt="user.friend[8].thumbnail"></a>
+	</div>
+	<div>
+		<span><%= user.friend[6].username %></span><%= user.friend[7].username %><span></span><%= user.friend[8].username %>
+	</div>
+</div>
