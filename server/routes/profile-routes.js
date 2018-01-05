@@ -17,7 +17,8 @@ router.get('/current_user', (req, res) => {
 });
 
 router.get('/', authCheck, (req, res) => {
-  res.render('profile', { user: req.user});
+  console.log(req.user);
+  res.render('profile', { user: req.user });
 });
 
 module.exports = router;
