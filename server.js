@@ -1,18 +1,18 @@
 const express = require('express');
 
 
-// Routes 
+// Routes
 const authRoutes = require('./server/routes/auth-routes');
 const profileRoutes = require('./server/routes/profile-routes');
 
-// passport setup, sets up strategies 
+// passport setup, sets up strategies
 const passportSetup = require('./server/config/passport-setup');
 //mongoose ORM for mongodb
 const mongoose = require('mongoose');
 //some config stuff: Todo :> extract out secrets.
 const keys = require('./server/config/keys');
 
-//cookie session ?: in memory database 
+//cookie session ?: in memory database
 const cookieSession = require('cookie-session');
 // passport
 const passport = require('passport');
@@ -76,9 +76,9 @@ app.post('/users', (req, res) => {
   });
 });
 // post / update friends list of an individual user
-app.post('/:id', (req, res) => {
-  
-});
+// app.post('/:id', (req, res) => {
+
+// });
 
 app.get('/users', (req, res) => {
   console.log('Hello from app.get /users route!');
@@ -115,15 +115,14 @@ module.exports = {
 =======
 
 // route to get the friends array of an individual user
-// app.get('/:id', (req, res) => {
-//   console.log('Hi from the app.get /:id >> should return friends array');
-//   const { id } = req.params;
-//   User.findOne({_id: id}, (err, user) => {
-//     if (err) return res.send(err);
-//     console.log(user);
-//     res.render('profile', {user});
-//   });
-// });
+app.get('/profile/:id', (req, res) => {
+  const { id } = req.params;
+  User.findOne({_id: id}, (err, user) => {
+    if (err) return res.send(err);
+    console.log(user);
+    res.render('profile', {user});
+  });
+});
 
 
 mongoose.connect(keys.mongodb.dbURI, {useMongoClient: true}, (err) => {
@@ -134,4 +133,7 @@ mongoose.connect(keys.mongodb.dbURI, {useMongoClient: true}, (err) => {
   });
   console.log('Connected to MyTopNine DataBase from Server.js!');
 });
+<<<<<<< HEAD
 >>>>>>> 3a57963ea208aba8283e92b67916249b889e0357
+=======
+>>>>>>> upstream/master
