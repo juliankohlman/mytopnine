@@ -2,6 +2,7 @@ version: '3.3'
 
 services:
   web:
+    depends_on: ["mongo"]
     image: 'francoslab/lambdaschool-hackathon'
     build: .
     ports:
