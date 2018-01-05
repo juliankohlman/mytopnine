@@ -2,7 +2,7 @@
 	<ul>
 		<% users.forEach(function(user){ %>
 			<div class="user">
-				<a href="#"><img src="<%= user.thumbnail%>"/></a>
+				<a href="/topnine/friends/create/<%= user._id %>"><img src="<%= user.thumbnail%>"/></a>
 			</div>
 		<% }); %>
 	  </ul>
