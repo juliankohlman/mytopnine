@@ -60,9 +60,9 @@ app.use('/profile', profileRoutes);
 
 // create home route
 app.get('/', async (req, res) => {
+  const user = req.user;
   const users = await User.find({}).exec();
-  console.log(users);
-  res.render('home', { user: req.user, users});
+  res.render('home', { user, users});
 });
 
 
@@ -88,6 +88,8 @@ app.get('/users', (req, res) => {
     res.json(user);
   });
 });
+
+
 // route to get the friends array of an individual user
 // app.get('/:id', (req, res) => {
 //   console.log('Hi from the app.get /:id >> should return friends array');
