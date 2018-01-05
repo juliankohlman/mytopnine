@@ -9,7 +9,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const Card = require('./server/models/user.js');
 const cors = require('cors');
-require('dotenv').config();
+// require('dotenv').config();
 
 const app = express();
 const PORT = 3001;
