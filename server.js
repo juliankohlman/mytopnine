@@ -14,9 +14,8 @@ const app = express();
 const PORT = 3001;
 
 // Express only serves static assets in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./public/build"));
-}
+app.use(express.static("./views"));
+
 
 app.use(bodyParser.json());
 const corsOptions = {
