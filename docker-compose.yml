@@ -2,6 +2,7 @@ version: '3.3'
 
 services: 
   web:
+    image: 'francoslab/lambdaschool-hackathon'
     build: .
     ports:
       - "80:3001"
