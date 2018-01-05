@@ -10,11 +10,15 @@ nav ul{
   max-width: 960px;
   margin: 0 auto;
   padding: 0;
+  display: flex;
 }
 nav li{
   list-style-type: none;
   display: inline-block;
   margin: 0 10px 0 0;
+}
+nav li:last-child {
+  margin-left: auto;
 }
 nav a{
   color: #fff;
