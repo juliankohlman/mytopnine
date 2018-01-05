@@ -8,13 +8,13 @@
   <body>
     <nav>
       <ul>
-          <% if (user) { %>
-            <li><a href="/auth/logout">LOGOUT</a></li>
-            <% } else { %>
-            <li><a href="/auth/login">LOGIN</a></li>
-            <% } %>
-            <li><a href="/">HOMEPAGE</a></li>
-            <li><a href="/profile">PROFILE</a></li>
+        <li><a href="/">HOMEPAGE</a></li>
+        <li><a href="/profile">PROFILE</a></li>
+        <% if (user) { %>
+        <li><a href="/auth/logout">LOGOUT</a></li>
+        <% } else { %>
+        <li><a href="/auth/login">LOGIN</a></li>
+        <% } %>
       </ul>
     </nav>
     <header>
