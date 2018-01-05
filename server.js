@@ -79,6 +79,7 @@ app.get('/cards', (req, res) => {
 app.listen(PORT, (err) => {
   if (err) return console.log('ERROR port 3001');
   console.log(`MyTopNine now listening for requests on port ${PORT}`);
+<<<<<<< HEAD
 });
 
 module.exports = {
@@ -94,3 +95,6 @@ module.exports = {
     cookieKey:'mytopnine#!'
   }
 };
+=======
+});
+>>>>>>> a4239385dcf162dcc43561c4ba52dbe32253e113
