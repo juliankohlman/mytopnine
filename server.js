@@ -1,23 +1,32 @@
 const express = require('express');
+
+
+// Routes 
 const authRoutes = require('./server/routes/auth-routes');
 const profileRoutes = require('./server/routes/profile-routes');
+
+// passport setup, sets up strategies 
 const passportSetup = require('./server/config/passport-setup');
+//mongoose ORM for mongodb
 const mongoose = require('mongoose');
+//some config stuff: Todo :> extract out secrets.
 const keys = require('./server/config/keys');
+
+//cookie session ?: in memory database 
 const cookieSession = require('cookie-session');
+// passport
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const Card = require('./server/models/user.js');
+
+const User = require('./server/models/user.js');
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 const PORT = 3001;
 
 // Express only serves static assets in production
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./public/build"));
-}
+app.use(express.static("./public"));
+
 
 app.use(bodyParser.json());
 const corsOptions = {
@@ -43,40 +52,44 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //
-mongoose.connect(keys.mongodb.dbURI, {useMongoClient: true}, (err) => {
-  if (err) return console.log(err);
-  console.log('Connected to MyTopNine DataBase from Server.js!');
-});
+
 
 // set up auth routes
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
 
 // create home route
-app.get('/', (req, res) => {
-  res.render('home', { user: req.user});
+app.get('/', async (req, res) => {
+  const user = req.user;
+  const users = await User.find({}).exec();
+  res.render('home', { user, users});
 });
 
 
-// create calls to cards db
-app.post('/cards', (req, res) => {
-  const { _id, frontCard, backCard } = req.body;
-  const card = new Card({_id, frontCard, backCard});
-  card.save((err, newCard) => {
+// create calls to users db
+app.post('/users', (req, res) => {
+  const { _id, username } = req.body;
+  const user = new User({_id, username});
+  user.save((err, newUser) => {
     if (err) return res.send(err);
-    res.json(newCard)
+    res.json(newUser)
+  });
+});
+// post / update friends list of an individual user
+app.post('/:id', (req, res) => {
+  
+});
+
+app.get('/users', (req, res) => {
+  console.log('Hello from app.get /users route!');
+  User.find({}, (err, user) => {
+    console.log(user);
+    if (err) return res.send(err);
+    res.json(user);
   });
 });
 
-app.get('/cards', (req, res) => {
-  console.log('Hello from app.get /cards route!');
-  Card.find({}, (err, card) => {
-    console.log(card);
-    if (err) return res.send(err);
-    res.json(card);
-  });
-});
-
+<<<<<<< HEAD
 app.listen(PORT, (err) => {
   if (err) return console.log('ERROR port 3001');
   console.log(`MyTopNine now listening for requests on port ${PORT}`);
@@ -99,3 +112,26 @@ module.exports = {
 =======
 });
 >>>>>>> a4239385dcf162dcc43561c4ba52dbe32253e113
+=======
+
+// route to get the friends array of an individual user
+// app.get('/:id', (req, res) => {
+//   console.log('Hi from the app.get /:id >> should return friends array');
+//   const { id } = req.params;
+//   User.findOne({_id: id}, (err, user) => {
+//     if (err) return res.send(err);
+//     console.log(user);
+//     res.render('profile', {user});
+//   });
+// });
+
+
+mongoose.connect(keys.mongodb.dbURI, {useMongoClient: true}, (err) => {
+  if (err) return console.log(err);
+  app.listen(PORT, (err) => {
+    if (err) return console.log('ERROR port 3001');
+    console.log(`MyTopNine now listening for requests on port ${PORT}`);
+  });
+  console.log('Connected to MyTopNine DataBase from Server.js!');
+});
+>>>>>>> 3a57963ea208aba8283e92b67916249b889e0357

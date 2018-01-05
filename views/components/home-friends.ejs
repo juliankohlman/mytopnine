@@ -1,0 +1,11 @@
+<div class="discover">
+	<ul>
+		<% users.forEach(function(user){ %>
+			<div class="user">
+				<a href="/profile/<%= user._id %>"><img src="<%= user.thumbnail%>"/></a>
+				<a href="/top/people/create/<%= user._id %>">Add to list</a>
+			</div>
+		<% }); %>
+	  </ul>
+</div>
+
